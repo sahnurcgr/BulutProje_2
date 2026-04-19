@@ -4,13 +4,9 @@ import random
 from datetime import datetime, timezone
 import boto3
 
-# --- AYARLAR KISMI ---
-# AWS Panelinin sağ üst köşesinden bulduğun kodu buraya yaz (Örn: 'eu-central-1')
 AWS_REGION = 'us-east-1' 
 
-# AWS Kinesis panelinde yazan isimle BİREBİR aynı olmalı
 STREAM_NAME = 'DroneTelemetryStream'
-# ---------------------
 
 kinesis_client = boto3.client('kinesis', region_name=AWS_REGION) 
 
@@ -18,7 +14,7 @@ def generate_drone_data(drone_id):
     """Rastgele drone telemetri verisi üretir."""
     return {
         'drone_id': drone_id,
-        'timestamp': datetime.now(timezone.utc).isoformat(), # UYARIYI GİDEREN YENİ KOD
+        'timestamp': datetime.now(timezone.utc).isoformat(),
         'altitude': round(random.uniform(100.0, 500.0), 2),      
         'speed': round(random.uniform(0.0, 80.0), 2),            
         'battery_level': round(random.uniform(10.0, 100.0), 2),  
